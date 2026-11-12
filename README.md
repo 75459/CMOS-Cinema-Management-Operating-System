@@ -28,11 +28,13 @@ zarządca:
 -----------------------------------------
 klasy:
 
-
 main (func checkPassword, func issueMemo,func editMemo, )
 
-saleManager (tabela na obj sala, func setNumber, func SetSeatCount, func setClean, func setWorking)
-sala (numerSali, liczbaMiejsc, clean, working)
+saleManager (tabela z salami, func setNumber, func setSeatCount, func setClean, func setActive)
+sala(wlasciwosci: number, seatCount, isClean, active)
+
+filmy()
+film()
 
 filmy (nazwa{get}, gatunek{get}, dlugosc{get}, rating{get}, func setNazwa, func setGatunek, func setDlugosc, func setRating)
 
@@ -43,13 +45,9 @@ pracownicy
 
 
 
-
-Najczystszy podział odpowiedzialności wygląda tak:
-
 Klasa modelu (liczba pojedyncza: Sala, Film) – odpowiada tylko za siebie. Trzyma swoje zmienne i ma własne gettery/settery (jak w Twoim modelu B).
 
 Klasa managera (liczba mnoga: SaleManager, FilmyManager) – odpowiada za listę obiektów. Ma metody typu: dodajSale(), usunSale(), znajdzPoNumerze(), wyswietlWszystkie().
-
 
 
 
