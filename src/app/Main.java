@@ -17,7 +17,7 @@ void main() {
                 menuEmp();
                 break;
             case "2":
-                System.out.println("Podawanie danych dostępu dla zarządcy");
+                System.out.println("Podaj dane dostępu dla zarządcy");
                 String adminPassword = scanner.nextLine();
                 if (pass.checkPassword(adminPassword))
                 {

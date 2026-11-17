@@ -30,8 +30,8 @@ klasy:
 
 main (func checkPassword, func issueMemo,func editMemo, )
 
-cinema.saleManager (tabela z salami, func setNumber, func setSeatCount, func setClean, func setActive)
-sala(wlasciwosci: number, seatCount, isClean, active)
+cinema.roomManager (tabela z salami, func setNumber, func setSeatCount, func setClean, func setActive)
+room(wlasciwosci: number, seatCount, isClean, active)
 
 filmy()
 film()
@@ -45,7 +45,7 @@ pracownicy
 
 
 
-Klasa modelu (liczba pojedyncza: cinema.Sala, Film) – odpowiada tylko za siebie. Trzyma swoje zmienne i ma własne gettery/settery (jak w Twoim modelu B).
+Klasa modelu (liczba pojedyncza: cinema.Room, Film) – odpowiada tylko za siebie. Trzyma swoje zmienne i ma własne gettery/settery (jak w Twoim modelu B).
 
 Klasa managera (liczba mnoga: SaleManager, FilmyManager) – odpowiada za listę obiektów. Ma metody typu: dodajSale(), usunSale(), znajdzPoNumerze(), wyswietlWszystkie().
 
@@ -77,7 +77,7 @@ czy dzisiaj pracuje
 
 seanse (harmonogram seansów):
 film
-sala
+room
 miejsca kupione
 miejsca zarezerwowane
 

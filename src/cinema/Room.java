@@ -1,13 +1,13 @@
 package cinema;
 
-public class Sala {
+public class Room {
     private int id; // id for identification in code
     private String number; // sale id number, like 2F, 20, whatever... (like actual sale number on the door)
     private int seatCount;
     private boolean clean;
     private boolean active;
 
-    Sala(String number, int seatCount, int id){
+    Room(String number, int seatCount, int id){
         this.number = number;
         this.seatCount = seatCount;
         clean = true;

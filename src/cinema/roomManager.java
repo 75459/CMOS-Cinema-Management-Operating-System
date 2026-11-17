@@ -2,31 +2,31 @@ package cinema;
 
 import java.util.ArrayList;
 
-public class saleManager {
-    private ArrayList<Sala> listaSal = new ArrayList<>();
+public class roomManager {
+    private ArrayList<Room> roomList = new ArrayList<>();
 
-    public saleManager(){}
-    public saleManager(ArrayList<Sala> list){
+    public roomManager(){}
+    public roomManager(ArrayList<Room> list){
         if (list != null)
         {
-            listaSal = list;
+            roomList = list;
         }
     }
 
-    private int getLastId(){ // returns last used id (for creating new sala)
-        if (listaSal.size() == 0)
+    private int getLastId(){ // returns last used id (for creating new room object)
+        if (roomList.size() == 0)
         {
             return 0;
         }
         else
         {
-            return listaSal.get(listaSal.size()-1).getId();
+            return roomList.get(roomList.size()-1).getId();
         }
     }
 
     private int getSalaIndexById(int id){
         int reps = 0;
-        for (Sala item : listaSal)
+        for (Room item : roomList)
         {
             reps++;
             if (item.getId() == id)
@@ -37,8 +37,8 @@ public class saleManager {
         return -1;
     }
 
-    private Sala getSalaById(int id){ // gets sala object by it id property
-        for (Sala item: listaSal)
+    private Room getSalaById(int id){ // gets room object by it id property
+        for (Room item: roomList)
         {
             if (item.getId() == id)
             {
@@ -49,7 +49,7 @@ public class saleManager {
     }
 
     public boolean checkId(int id){ // check whether sala with that id exists
-        for (Sala item : listaSal){
+        for (Room item : roomList){
             if (item.getId() == id)
             {
                 return true;
@@ -59,17 +59,17 @@ public class saleManager {
     }
 
     public void createSala(String number, int seatCount){
-        Sala sala = new Sala(number, seatCount, getLastId() + 1);
-        listaSal.add(sala);
+        Room room = new Room(number, seatCount, getLastId() + 1);
+        roomList.add(room);
     }
 
     public void setNumber(int id, String newNumber){
         if (checkId(id))
         {
-            Sala salaObj = getSalaById(id);
-            if (salaObj != null)
+            Room roomObj = getSalaById(id);
+            if (roomObj != null)
             {
-                salaObj.setNumber(newNumber);
+                roomObj.setNumber(newNumber);
             }
         }
     }
@@ -77,10 +77,10 @@ public class saleManager {
     public void setSeatCount(int id, int newSeatCount){
         if (checkId(id))
         {
-            Sala salaObj = getSalaById(id);
-            if (salaObj != null)
+            Room roomObj = getSalaById(id);
+            if (roomObj != null)
             {
-                salaObj.setSeatCount(newSeatCount);
+                roomObj.setSeatCount(newSeatCount);
             }
         }
     }
@@ -88,10 +88,10 @@ public class saleManager {
     public void setClean(int id, boolean newState){
         if (checkId(id))
         {
-            Sala salaObj = getSalaById(id);
-            if (salaObj != null)
+            Room roomObj = getSalaById(id);
+            if (roomObj != null)
             {
-                salaObj.setClean(newState);
+                roomObj.setClean(newState);
             }
         }
     }
@@ -99,10 +99,10 @@ public class saleManager {
     public void setActive(int id, boolean newState){
         if (checkId(id))
         {
-            Sala salaObj = getSalaById(id);
-            if (salaObj != null)
+            Room roomObj = getSalaById(id);
+            if (roomObj != null)
             {
-                salaObj.setActive(newState);
+                roomObj.setActive(newState);
             }
         }
     }
@@ -113,7 +113,7 @@ public class saleManager {
             int index = getSalaIndexById(id);
             if (index >= 0)
             {
-                listaSal.remove(index);
+                roomList.remove(index);
             }
         }
     }
