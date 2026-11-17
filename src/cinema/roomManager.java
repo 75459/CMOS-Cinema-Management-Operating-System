@@ -13,6 +13,8 @@ public class roomManager {
         }
     }
 
+    // --------------------------------- USEFUL ---------------------------------
+
     private int getLastId(){ // returns last used id (for creating new room object)
         if (roomList.size() == 0)
         {
@@ -57,6 +59,8 @@ public class roomManager {
         }
         return false;
     }
+
+    // -------------------------------------------------------------------------
 
     public void createSala(String number, int seatCount){
         Room room = new Room(number, seatCount, getLastId() + 1);

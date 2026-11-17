@@ -14,6 +14,8 @@ public class FilmManager {
         }
     }
 
+    // --------------------------------- USEFUL ---------------------------------
+
     private Film getFilmObjById(int id){ // self-explanatory pretty much
         for (Film item : filmList)
         {
@@ -45,7 +47,7 @@ public class FilmManager {
         }
     }
 
-
+    // -------------------------------------------------------------------------
 
 
     public void createFilm(String title){

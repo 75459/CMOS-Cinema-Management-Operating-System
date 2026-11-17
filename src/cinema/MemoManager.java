@@ -11,6 +11,8 @@ public class MemoManager {
         this.memoList = memoList;
     }
 
+    // --------------------------------- USEFUL ---------------------------------
+
     private int getLastId(){ // returns last used id (for creating new memo)
         if (memoList.size() == 0)
         {
@@ -54,6 +56,8 @@ public class MemoManager {
         }
         return null;
     }
+
+    // -------------------------------------------------------------------------
 
     public void createMemo(String content){
         Memo memo = new Memo(getLastId()+1, content);
