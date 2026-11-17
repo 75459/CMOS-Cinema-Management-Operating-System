@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.io.IOException;
 
 Scanner scanner = new Scanner(System.in);
 void main() {
