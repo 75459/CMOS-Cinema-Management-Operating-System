@@ -3,20 +3,30 @@ package cinema;
 public class PasswordManager {
     private String password;
 
-    public PasswordManager(){}
+    public PasswordManager(){
+        password = "123";
+    }
 
     public PasswordManager(String password){
-        this.password = password;
+        this(); // fires a empty constructor (password == 123)
+        if (password != null && !password.isBlank())
+        {
+            this.password = password;
+        }
     }
 
     public boolean checkPassword(String value){
-        if (value == password)
+        if (value != null && !value.isBlank())
         {
-            return true;
+            if (value.equals(password))
+            {
+                return true;
+            }
         }
         else
         {
             return false;
         }
+        return false;
     }
 }

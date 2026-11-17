@@ -13,21 +13,34 @@ public class saleManager {
         }
     }
 
-    private int getLastId(){
+    private int getLastId(){ // returns last used id (for creating new sala)
         if (listaSal.size() == 0)
         {
-            return 1;
+            return 0;
         }
         else
         {
-            return listaSal.get(listaSal.size()).Id;
+            return listaSal.get(listaSal.size()-1).getId();
         }
     }
 
-    private Sala getSalaById(int id){
+    private int getSalaIndexById(int id){
+        int reps = 0;
+        for (Sala item : listaSal)
+        {
+            reps++;
+            if (item.getId() == id)
+            {
+                return reps;
+            }
+        }
+        return -1;
+    }
+
+    private Sala getSalaById(int id){ // gets sala object by it id property
         for (Sala item: listaSal)
         {
-            if (item.Id == id)
+            if (item.getId() == id)
             {
                 return item;
             }
@@ -35,9 +48,9 @@ public class saleManager {
         return null;
     }
 
-    private boolean checkId(int id){
+    public boolean checkId(int id){ // check whether sala with that id exists
         for (Sala item : listaSal){
-            if (item.Id == id)
+            if (item.getId() == id)
             {
                 return true;
             }
@@ -46,7 +59,7 @@ public class saleManager {
     }
 
     public void createSala(String number, int seatCount){
-        Sala sala = new Sala(number, seatCount, getLastId()+1);
+        Sala sala = new Sala(number, seatCount, getLastId() + 1);
         listaSal.add(sala);
     }
 
@@ -56,7 +69,7 @@ public class saleManager {
             Sala salaObj = getSalaById(id);
             if (salaObj != null)
             {
-                salaObj.number = newNumber;
+                salaObj.setNumber(newNumber);
             }
         }
     }
@@ -67,7 +80,7 @@ public class saleManager {
             Sala salaObj = getSalaById(id);
             if (salaObj != null)
             {
-                salaObj.seatCount = newSeatCount;
+                salaObj.setSeatCount(newSeatCount);
             }
         }
     }
@@ -78,7 +91,7 @@ public class saleManager {
             Sala salaObj = getSalaById(id);
             if (salaObj != null)
             {
-                salaObj.isClean = newState;
+                salaObj.setClean(newState);
             }
         }
     }
@@ -89,7 +102,18 @@ public class saleManager {
             Sala salaObj = getSalaById(id);
             if (salaObj != null)
             {
-                salaObj.active = newState;
+                salaObj.setActive(newState);
+            }
+        }
+    }
+
+    public void deleteSala(int id){
+        if (checkId(id))
+        {
+            int index = getSalaIndexById(id);
+            if (index >= 0)
+            {
+                listaSal.remove(index);
             }
         }
     }

@@ -1,17 +1,56 @@
 package cinema;
 
 public class Sala {
-    public int Id;
-    public String number;
-    public int seatCount;
-    public boolean isClean;
-    public boolean active;
+    private int id; // id for identification in code
+    private String number; // sale id number, like 2F, 20, whatever... (like actual sale number on the door)
+    private int seatCount;
+    private boolean clean;
+    private boolean active;
 
-    public Sala(String number, int seatCount, int Id){
+    Sala(String number, int seatCount, int id){
         this.number = number;
         this.seatCount = seatCount;
-        isClean = true;
+        clean = true;
         active = true;
-        this.Id = Id;
+        this.id = id;
+    }
+
+    // ------------ GET ------------------
+    int getId(){
+        return id;
+    }
+
+    String getNumber(){
+        return number;
+    }
+
+    int getSeatCount(){
+        return seatCount;
+    }
+
+    boolean isClean(){
+        return clean;
+    }
+
+    boolean isActive(){
+        return active;
+    }
+
+
+    // ------------ SET ------------------
+    void setNumber(String number){
+        this.number = number;
+    }
+
+    void setSeatCount(int seatCount){
+        this.seatCount = seatCount;
+    }
+
+    void setClean(boolean clean){
+        this.clean = clean;
+    }
+
+    void setActive(boolean active){
+        this.active = active;
     }
 }

@@ -1,3 +1,5 @@
+import cinema.PasswordManager;
+
 import java.util.Scanner;
 
 Scanner scanner = new Scanner(System.in);
@@ -7,6 +9,7 @@ void main() {
     {
         drawStart();
         String choice = scanner.nextLine();
+        PasswordManager pass = new PasswordManager();
 
         switch(choice)
         {
@@ -14,17 +17,14 @@ void main() {
                 menuEmp();
                 break;
             case "2":
-                boolean does = true;
-                while(does == true)
+                System.out.println("Podawanie danych dostępu dla zarządcy");
+                String adminPassword = scanner.nextLine();
+                if (pass.checkPassword(adminPassword))
                 {
-                    System.out.println("Podawanie danych dostępu dla zarządcy");
-                    String adminPassword = scanner.nextLine();
-                    if (adminPassword == "1")
-                    {
-                        menuAdmin();
-                        does = false;
-                        break;
-                    }
+                    menuAdmin();
+                }
+                else
+                {
                     System.out.println("Nieprawidłowe hasło!");
                 }
             case "0":
@@ -38,11 +38,6 @@ void main() {
 
 void menuAdmin() {
     System.out.println("actuall admin menu");
-    System.out.println("actuall admin menu");
-    System.out.println("actuall admin menu");
-    System.out.println("actuall admin menu");
-    System.out.println("actuall admin menu");
-
 }
 
 void menuEmp() {
