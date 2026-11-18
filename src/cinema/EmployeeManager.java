@@ -3,81 +3,64 @@ package cinema;
 import java.util.ArrayList;
 
 public class EmployeeManager {
-    private ArrayList<Employee> employeeList = new ArrayList<>();
+    private ArrayList<Person> staffList = new ArrayList<>();
 
-    public EmployeeManager(){}
-    public EmployeeManager(ArrayList<Employee> employeeList){
-        if (employeeList != null)
-        {
-            this.employeeList = employeeList;
+    public EmployeeManager() {}
+
+    public EmployeeManager(ArrayList<Person> staffList) {
+        if (staffList != null) {
+            this.staffList = staffList;
         }
     }
 
-    // --------------------------------- USEFUL ---------------------------------
-    private Employee getEmployeeObjById(int id){ // self-explanatory pretty much
-        for (Employee item : employeeList)
-        {
-            if (item.getId() == id){
-                return item;
-            }
-        }
-        return null;
-    }
-
-    private boolean checkId(int id){ // check whether employee with that id exists
-        for (Employee item : employeeList){
-            if (item.getId() == id)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private int getLastId(){ // returns last used id (for creating new employee)
-        if (employeeList.size() == 0)
-        {
+    private int getLastId() {
+        if (staffList.size() == 0) {
             return 0;
-        }
-        else
-        {
-            return employeeList.get(employeeList.size()-1).getId();
+        } else {
+            return staffList.get(staffList.size() - 1).getId();
         }
     }
 
-    // -------------------------------------------------------------------------
-
-    public void createEmployee(String name, String role){
-        Employee employee = new Employee(getLastId()+1, name, role);
-        employeeList.add(employee);
+    public void createEmployee(String firstName, String lastName, String position) {
+        Person emp = new Employee(getLastId() + 1, firstName, lastName, position);
+        staffList.add(emp);
     }
 
-    public String getName(int id){
-        if (checkId(id))
-        {
-            return getEmployeeObjById(id).getName();
-        }
-        return "Coś poszło nie tak!";
+    public void createManager(String firstName, String lastName, String department) {
+        Person mgr = new Manager(getLastId() + 1, firstName, lastName, department);
+        staffList.add(mgr);
     }
 
-    public String getRole(int id){
-        if (checkId(id))
-        {
-            return getEmployeeObjById(id).getRole();
+    public String getAllStaffInfo() {
+        if (staffList.size() == 0) {
+            return "Brak pracowników w bazie.";
         }
-        return "Coś poszło nie tak!";
+        String result = "";
+        for (Person item : staffList) {
+            result = result + item.getDetails() + "\n";
+        }
+        return result;
     }
 
-    public void setRole(int id,String role){
-        if (checkId(id))
-        {
-            getEmployeeObjById(id).setRole(role);
+    public String getStaffByRole(boolean onlyManagers) {
+        if (staffList.size() == 0) {
+            return "Brak pracowników w bazie.";
         }
-    }
-
-    public void deleteEmployee(int id){
-        if (checkId(id)){
-            employeeList.remove(getEmployeeObjById(id));
+        String result = "";
+        for (Person item : staffList) {
+            if (!onlyManagers && item instanceof Employee) {
+                Employee emp = (Employee) item; // downcasting
+                result = result + emp.getId() + ". " + emp.firstName + " " + emp.lastName
+                        + " | Stanowisko: " + emp.getPosition() + "\n";
+            } else if (onlyManagers && item instanceof Manager) {
+                Manager mgr = (Manager) item; // downcasting
+                result = result + mgr.getId() + ". " + mgr.firstName + " " + mgr.lastName
+                        + " | Dział: " + mgr.getDepartment() + "\n";
+            }
         }
+        if (result.equals("")) {
+            return "Brak osób spełniających kryterium.";
+        }
+        return result;
     }
 }

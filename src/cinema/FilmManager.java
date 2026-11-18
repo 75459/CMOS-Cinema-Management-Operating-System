@@ -14,6 +14,14 @@ public class FilmManager {
         }
     }
 
+    public Film[] getFilmsArray() {
+        Film[] array = new Film[filmList.size()];
+        for (int i = 0; i < filmList.size(); i++) {
+            array[i] = filmList.get(i);
+        }
+        return array;
+    }
+
     // --------------------------------- USEFUL ---------------------------------
 
     private Film getFilmObjById(int id){ // self-explanatory pretty much

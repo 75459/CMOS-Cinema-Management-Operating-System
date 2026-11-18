@@ -1,15 +1,14 @@
 package cinema;
 
-public class Screening {
-    private int screeningId;
-    private String date; // YYYY-MM-D HH:MM / example: 2026-11-20 15:30
+public class Screening extends CinemaEntity {
+    private String date; // YYYY-MM-DD HH:MM / example: 2026-11-20 15:30
     private int filmId;
     private int roomId;
     private int boughtSeats;
     private int reservedSeats;
 
-    Screening(int screeningId, String date, int  filmId, int roomId){
-        this.screeningId = screeningId;
+    Screening(int screeningId, String date, int filmId, int roomId) {
+        super(screeningId);
         this.date = date;
         this.filmId = filmId;
         this.roomId = roomId;
@@ -17,40 +16,49 @@ public class Screening {
         reservedSeats = 0;
     }
 
-    int getId(){
-        return screeningId;
-    }
-    String getDate(){
+    String getDate() {
         return date;
     }
-    int getFilmId(){
+
+    int getFilmId() {
         return filmId;
     }
-    int getRoomId(){
+
+    int getRoomId() {
         return roomId;
     }
-    int getBoughtSeats(){
+
+    int getBoughtSeats() {
         return boughtSeats;
     }
-    int getReservedSeats(){
+
+    int getReservedSeats() {
         return reservedSeats;
     }
 
-
-    void setDate(String date){
+    void setDate(String date) {
         this.date = date;
     }
-    void setFilmId(int filmId){
+
+    void setFilmId(int filmId) {
         this.filmId = filmId;
     }
-    void setRoomId(int roomId){
+
+    void setRoomId(int roomId) {
         this.roomId = roomId;
     }
-    void setBoughtSeats(int boughtSeats){
+
+    void setBoughtSeats(int boughtSeats) {
         this.boughtSeats = boughtSeats;
     }
-    void setReservedSeats(int reservedSeats){
+
+    void setReservedSeats(int reservedSeats) {
         this.reservedSeats = reservedSeats;
     }
 
+    @Override
+    String getInfo() {
+        return id + ". Data: " + date + " | Film ID: " + filmId + " | Sala ID: " + roomId
+                + " | Kupione: " + boughtSeats + " | Zarezerwowane: " + reservedSeats;
+    }
 }

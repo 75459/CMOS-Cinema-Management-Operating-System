@@ -1,19 +1,20 @@
 package cinema;
 
-public class Memo {
-    private int id;
+public class Memo extends CinemaEntity{
     private String content;
 
     Memo(int id, String content){
-        this.id = id;
+        super(id);
         this.content = content;
     }
 
-    int getId(){
-        return id;
-    }
 
     String getContent(){
         return content;
+    }
+
+    @Override
+    String getInfo() {
+        return id + ". " + content;
     }
 }

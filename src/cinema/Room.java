@@ -1,24 +1,20 @@
 package cinema;
 
-public class Room {
-    private int id; // id for identification in code
-    private String number; // sale id number, like 2F, 20, whatever... (like actual sale number on the door)
+public class Room extends CinemaEntity {
+    private String number;
     private int seatCount;
     private boolean clean;
     private boolean active;
 
-    Room(String number, int seatCount, int id){
+    Room(String number, int seatCount, int id) {
+        super(id);
         this.number = number;
         this.seatCount = seatCount;
-        clean = true;
-        active = true;
-        this.id = id;
+        this.clean = true;
+        this.active = true;
     }
 
     // ------------ GET ------------------
-    int getId(){
-        return id;
-    }
 
     String getNumber(){
         return number;
@@ -52,5 +48,10 @@ public class Room {
 
     void setActive(boolean active){
         this.active = active;
+    }
+
+    @Override
+    String getInfo() {
+        return id + ". Sala " + number + " | Miejsca: " + seatCount + " | Czysta: " + clean + " | Sprawna: " + active;
     }
 }

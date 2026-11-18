@@ -1,19 +1,19 @@
 package cinema;
 
-public class Film {
-    private int id;
+public class Film extends CinemaEntity{
     private String title;
 
     Film(int id, String title){
-        this.id = id;
+        super(id);
         this.title = title;
-    }
-
-    int getId(){
-        return id;
     }
 
     String getTitle(){
         return title;
+    }
+
+    @Override
+    String getInfo() {
+        return id + ". " + title;
     }
 }
