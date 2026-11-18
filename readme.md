@@ -6,6 +6,7 @@
 
 A console-based Java application simulating internal management software for a multi-screen cinema. The system separates access into two user profiles (**Employee** and password-protected **Manager**) and handles daily cinema operations such as ticket sales, seat reservations, screening schedules, room status tracking, staff records, and revenue reporting.
 
+[![Java CI](https://github.com/75459/CMOS-Cinema-Management-Operating-System/actions/workflows/build.yml/badge.svg)](https://github.com/75459/CMOS-Cinema-Management-Operating-System/actions/workflows/build.yml)
 ---
 
 ## Features
