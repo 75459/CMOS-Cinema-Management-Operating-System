@@ -1,6 +1,6 @@
 package cinema;
 
-public class Screening extends CinemaEntity {
+public class Screening extends CinemaEntity implements Comparable<Screening> {
     private String date; // YYYY-MM-DD HH:MM / example: 2026-11-20 15:30
     private int filmId;
     private int roomId;
@@ -14,6 +14,11 @@ public class Screening extends CinemaEntity {
         this.roomId = roomId;
         boughtSeats = 0;
         reservedSeats = 0;
+    }
+
+    @Override
+    public int compareTo(Screening other) {
+        return this.date.compareTo(other.date);
     }
 
     String getDate() {
@@ -60,5 +65,10 @@ public class Screening extends CinemaEntity {
     String getInfo() {
         return id + ". Data: " + date + " | Film ID: " + filmId + " | Sala ID: " + roomId
                 + " | Kupione: " + boughtSeats + " | Zarezerwowane: " + reservedSeats;
+    }
+
+    @Override
+    public String toString() {
+        return "Seans: " + getInfo();
     }
 }

@@ -1,24 +1,37 @@
 package cinema;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class ScreeningManager {
     private ArrayList<Screening> screeningsList = new ArrayList<Screening>();
     private static double[] ticketPrices = {25.0, 18.0}; // [0] = normal, [1] = kids
-
+    private HashMap<Integer, Double> screeningRevenue = new HashMap<>();
     public ScreeningManager() {}
 
-    public ScreeningManager(ArrayList<Screening> screeningsList) {
-        if (screeningsList != null) {
-            this.screeningsList = screeningsList;
+
+    public static double getTicketPrice(TicketType type) {
+        if (type != null && type.ordinal() < ticketPrices.length) {
+            return ticketPrices[type.ordinal()];
+        }
+        return -1;
+    }
+
+    public void registerTicketSale(int screeningId, TicketType type) {
+        double price = getTicketPrice(type);
+        if (price > 0) {
+            double current = screeningRevenue.getOrDefault(screeningId, 0.0);
+            screeningRevenue.put(screeningId, current + price);
         }
     }
 
-    public static double getTicketPrice(int typeIndex) {
-        if (typeIndex >= 0 && typeIndex < ticketPrices.length) {
-            return ticketPrices[typeIndex];
+    public double getTotalRevenue() {
+        double total = 0.0;
+        for (double amount : screeningRevenue.values()) {
+            total += amount;
         }
-        return -1;
+        return total;
     }
 
     // --------------------------------- USEFUL ---------------------------------
@@ -186,5 +199,33 @@ public class ScreeningManager {
         if (checkId(id)) {
             getScreeningObjById(id).setReservedSeats(newReservedSeats);
         }
+    }
+
+    public String getScreeningsSortedByDate() {
+        Screening[] array = getScreeningsArray();
+        if (array.length == 0) {
+            return "Brak seansów w bazie.";
+        }
+        Arrays.sort(array);
+
+        String result = "";
+        for (Screening item : array) {
+            result = result + item.toString() + "\n";
+        }
+        return result;
+    }
+
+    public String getScreeningsSortedByPopularity() {
+        Screening[] array = getScreeningsArray();
+        if (array.length == 0) {
+            return "Brak seansów w bazie.";
+        }
+        Arrays.sort(array, new ScreeningSeatsComparator());
+
+        String result = "";
+        for (Screening item : array) {
+            result = result + item.toString() + "\n";
+        }
+        return result;
     }
 }

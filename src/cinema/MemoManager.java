@@ -6,10 +6,6 @@ public class MemoManager {
     private ArrayList<Memo> memoList = new ArrayList<>();
 
     public MemoManager(){}
-    public MemoManager(ArrayList<Memo> memoList){
-        if (memoList != null)
-        this.memoList = memoList;
-    }
 
     // --------------------------------- USEFUL ---------------------------------
 

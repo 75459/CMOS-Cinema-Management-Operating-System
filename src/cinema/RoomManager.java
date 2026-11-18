@@ -6,12 +6,7 @@ public class RoomManager {
     private ArrayList<Room> roomList = new ArrayList<>();
 
     public RoomManager(){}
-    public RoomManager(ArrayList<Room> list){
-        if (list != null)
-        {
-            roomList = list;
-        }
-    }
+
 
     // --------------------------------- USEFUL ---------------------------------
 

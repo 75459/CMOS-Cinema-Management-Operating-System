@@ -7,11 +7,6 @@ public class EmployeeManager {
 
     public EmployeeManager() {}
 
-    public EmployeeManager(ArrayList<Person> staffList) {
-        if (staffList != null) {
-            this.staffList = staffList;
-        }
-    }
 
     private int getLastId() {
         if (staffList.size() == 0) {

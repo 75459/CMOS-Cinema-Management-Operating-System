@@ -7,12 +7,6 @@ public class FilmManager {
 
     public FilmManager() {}
 
-    public FilmManager(ArrayList<Film> filmList) {
-        if (filmList != null)
-        {
-            this.filmList = filmList;
-        }
-    }
 
     public Film[] getFilmsArray() {
         Film[] array = new Film[filmList.size()];
@@ -58,9 +52,13 @@ public class FilmManager {
     // -------------------------------------------------------------------------
 
 
-    public void createFilm(String title){
-        Film film = new Film(getLastId()+1,title);
-        filmList.add(film);
+    public boolean createFilm(String title) {
+        Film newFilm = new Film(getLastId() + 1, title);
+        if (filmList.contains(newFilm)) { // automatycznie wywołuje Film.equals()
+            return false;
+        }
+        filmList.add(newFilm);
+        return true;
     }
 
     public String getTitle(int id){
@@ -78,4 +76,6 @@ public class FilmManager {
             filmList.remove(getFilmObjById(id));
         }
     }
+
+
 }

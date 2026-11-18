@@ -54,4 +54,9 @@ public class Room extends CinemaEntity {
     String getInfo() {
         return id + ". Sala " + number + " | Miejsca: " + seatCount + " | Czysta: " + clean + " | Sprawna: " + active;
     }
+
+    @Override
+    public String toString() {
+        return "Sala: " + getInfo();
+    }
 }
