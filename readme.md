@@ -1,8 +1,8 @@
 # CMOS — Cinema Management Operating System
 
-> **Academic Project:** Console-based Java application developed as a credit assignment for the **Object-Oriented Programming** university course.
+> **Academic Project:** Console-based Java application developed as a credit assignment for the **Java Object-Oriented Programming** university course.
 
-> **Projekt zaliczeniowy:** Konsolowa aplikacja w języku Java zrealizowana w ramach zaliczenia przedmiotu **Programowanie Obiektowe**.
+> **Projekt zaliczeniowy:** Konsolowa aplikacja w języku Java zrealizowana w ramach zaliczenia przedmiotu **Programowanie Obiektowe Java**.
 
 A console-based Java application simulating internal management software for a multi-screen cinema. The system separates access into two user profiles (**Employee** and password-protected **Manager**) and handles daily cinema operations such as ticket sales, seat reservations, screening schedules, room status tracking, staff records, and revenue reporting.
 
