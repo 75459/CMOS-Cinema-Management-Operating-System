@@ -2,7 +2,7 @@ package cinema;
 
 import java.util.ArrayList;
 
-public class RoomManager {
+public class RoomManager implements Displayable {
     private ArrayList<Room> roomList = new ArrayList<>();
 
     public RoomManager(){}
@@ -21,20 +21,7 @@ public class RoomManager {
         }
     }
 
-    private int getSalaIndexById(int id){
-        int reps = 0;
-        for (Room item : roomList)
-        {
-            if (item.getId() == id)
-            {
-                return reps;
-            }
-            reps++;
-        }
-        return -1;
-    }
-
-    private Room getSalaById(int id){ // gets room object by it id property
+    Room getRoomById(int id){ // gets room object by it id property
         for (Room item: roomList)
         {
             if (item.getId() == id)
@@ -45,7 +32,7 @@ public class RoomManager {
         return null;
     }
 
-    public boolean checkId(int id){ // check whether sala with that id exists
+    private boolean checkId(int id){ // check whether sala with that id exists
         for (Room item : roomList){
             if (item.getId() == id)
             {
@@ -58,9 +45,21 @@ public class RoomManager {
     // -------------------------------------------------------------------------
 
 
+    @Override
+    public String getAllInfo() {
+        if (roomList.size() == 0) {
+            return "Brak sal w bazie.";
+        }
+        String result = "";
+        for (Room item : roomList) {
+            result = result + item.toString() + "\n";
+        }
+        return result;
+    }
+
     public int getRoomCountById(int id){
         if (checkId(id)){
-            return getSalaById(id).getSeatCount();
+            return getRoomById(id).getSeatCount();
         }
         return -1;
     }
@@ -69,32 +68,12 @@ public class RoomManager {
         roomList.add(room);
     }
 
-    public void setNumber(int id, String newNumber){
-        if (checkId(id))
-        {
-            Room roomObj = getSalaById(id);
-            if (roomObj != null)
-            {
-                roomObj.setNumber(newNumber);
-            }
-        }
-    }
 
-    public void setSeatCount(int id, int newSeatCount){
-        if (checkId(id))
-        {
-            Room roomObj = getSalaById(id);
-            if (roomObj != null)
-            {
-                roomObj.setSeatCount(newSeatCount);
-            }
-        }
-    }
 
     public void setClean(int id, boolean newState){
         if (checkId(id))
         {
-            Room roomObj = getSalaById(id);
+            Room roomObj = getRoomById(id);
             if (roomObj != null)
             {
                 roomObj.setClean(newState);
@@ -102,10 +81,12 @@ public class RoomManager {
         }
     }
 
+
+
     public void setActive(int id, boolean newState){
         if (checkId(id))
         {
-            Room roomObj = getSalaById(id);
+            Room roomObj = getRoomById(id);
             if (roomObj != null)
             {
                 roomObj.setActive(newState);
@@ -115,7 +96,7 @@ public class RoomManager {
 
     public void deleteSala(int id){
         if (checkId(id)) {
-            roomList.remove(getSalaById(id));
+            roomList.remove(getRoomById(id));
         }
     }
 

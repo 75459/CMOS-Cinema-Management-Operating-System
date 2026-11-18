@@ -2,7 +2,7 @@ package cinema;
 
 import java.util.ArrayList;
 
-public class MemoManager {
+public class MemoManager implements Displayable{
     private ArrayList<Memo> memoList = new ArrayList<>();
 
     public MemoManager(){}
@@ -43,15 +43,6 @@ public class MemoManager {
         return -1;
     }
 
-    private Memo getMemoObjById(int id){ // self-explanatory as well
-        for (Memo item : memoList)
-        {
-            if (item.getId() == id){
-                return item;
-            }
-        }
-        return null;
-    }
 
     // -------------------------------------------------------------------------
 
@@ -60,22 +51,15 @@ public class MemoManager {
         memoList.add(memo);
     }
 
-    public String getMemoContentById(int id){ // returns string content of memo
-        if (checkId(id)) {
-            Memo memoObj = getMemoObjById(id);
-            if (memoObj != null) {
-                return memoObj.getContent();
-            }
+    public String getAllInfo() {
+        if (memoList.size() == 0) {
+            return "Brak ogłoszeń w bazie.";
         }
-        return "something went wrong!";
-    }
-
-    public ArrayList<String> getAllMemosContent(){ // returns ArrayList of all memos contents, CAN BE EMPTY IF NO MEMOS
-        ArrayList<String> memosContent = new ArrayList<String>();
-        for (Memo item : memoList){
-            memosContent.add(item.getContent());
+        String result = "";
+        for (Memo item : memoList) {
+            result = result + item.toString() + "\n";
         }
-        return memosContent;
+        return result;
     }
 
     public void deleteMemo(int id){

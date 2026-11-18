@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class ScreeningManager {
+public class ScreeningManager implements Displayable {
     private ArrayList<Screening> screeningsList = new ArrayList<Screening>();
     private static double[] ticketPrices = {25.0, 18.0}; // [0] = normal, [1] = kids
     private HashMap<Integer, Double> screeningRevenue = new HashMap<>();
@@ -35,6 +35,19 @@ public class ScreeningManager {
     }
 
     // --------------------------------- USEFUL ---------------------------------
+
+    @Override
+    public String getAllInfo() {
+        if (screeningsList.size() == 0) {
+            return "Brak seansów w bazie.";
+        }
+        String result = "";
+        for (Screening item : screeningsList) {
+            result = result + item.toString() + "\n";
+        }
+        return result;
+    }
+
     private Screening getScreeningObjById(int id) {
         for (Screening item : screeningsList) {
             if (item.getId() == id) {
@@ -80,9 +93,19 @@ public class ScreeningManager {
 
     // -------------------------------------------------------------------------
 
-    public void createScreening(String date, int filmId, int roomId) {
-        Screening screening = new Screening(getLastId() + 1, date, filmId, roomId);
-        screeningsList.add(screening);
+    public void createScreening(String date, int filmId, int roomId, RoomManager roomManager) throws CinemaException {
+        Room room = roomManager.getRoomById(roomId);
+        if (room == null) {
+            throw new CinemaException("Nie znaleziono sali o ID: " + roomId);
+        }
+        if (!room.isActive()) {
+            throw new CinemaException("Nie można utworzyć seansu — sala nr " + room.getNumber() + " jest wyłączona z użytku.");
+        }
+        if (!room.isClean()) {
+            throw new CinemaException("Nie można utworzyć seansu — sala nr " + room.getNumber() + " jest brudna i wymaga sprzątania.");
+        }
+
+        screeningsList.add(new Screening(getLastId() + 1, date, filmId, roomId));
     }
 
     public void deleteScreening(int id) {
@@ -135,19 +158,7 @@ public class ScreeningManager {
     }
 
     // ---------------- GET ----------------
-    public String getDate(int id) {
-        if (checkId(id)) {
-            return getScreeningObjById(id).getDate();
-        }
-        return "Coś poszło nie tak!";
-    }
 
-    public int getFilmId(int id) {
-        if (checkId(id)) {
-            return getScreeningObjById(id).getFilmId();
-        }
-        return -1;
-    }
 
     public int getRoomId(int id) {
         if (checkId(id)) {

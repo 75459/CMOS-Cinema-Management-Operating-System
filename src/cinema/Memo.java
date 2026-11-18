@@ -8,11 +8,6 @@ public class Memo extends CinemaEntity {
         this.content = content;
     }
 
-
-    String getContent() {
-        return content;
-    }
-
     @Override
     String getInfo() {
         return id + ". " + content;

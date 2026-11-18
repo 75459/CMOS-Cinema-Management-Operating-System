@@ -2,7 +2,7 @@ package cinema;
 
 import java.util.ArrayList;
 
-public class EmployeeManager {
+public class EmployeeManager implements Displayable {
     private ArrayList<Person> staffList = new ArrayList<>();
 
     public EmployeeManager() {}
@@ -26,7 +26,7 @@ public class EmployeeManager {
         staffList.add(mgr);
     }
 
-    public String getAllStaffInfo() {
+    public String getAllInfo() {
         if (staffList.size() == 0) {
             return "Brak pracowników w bazie.";
         }

@@ -3,8 +3,8 @@ package cinema;
 public class Room extends CinemaEntity {
     private String number;
     private int seatCount;
-    private boolean clean;
-    private boolean active;
+     private boolean clean;
+     private boolean active;
 
     Room(String number, int seatCount, int id) {
         super(id);
@@ -34,13 +34,6 @@ public class Room extends CinemaEntity {
 
 
     // ------------ SET ------------------
-    void setNumber(String number){
-        this.number = number;
-    }
-
-    void setSeatCount(int seatCount){
-        this.seatCount = seatCount;
-    }
 
     void setClean(boolean clean){
         this.clean = clean;

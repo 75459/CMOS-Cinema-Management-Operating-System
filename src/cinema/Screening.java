@@ -21,13 +21,6 @@ public class Screening extends CinemaEntity implements Comparable<Screening> {
         return this.date.compareTo(other.date);
     }
 
-    String getDate() {
-        return date;
-    }
-
-    int getFilmId() {
-        return filmId;
-    }
 
     int getRoomId() {
         return roomId;

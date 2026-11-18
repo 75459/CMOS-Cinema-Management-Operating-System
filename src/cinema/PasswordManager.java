@@ -3,12 +3,8 @@ package cinema;
 public class PasswordManager {
     private String password;
 
-    public PasswordManager(){
-        password = "123";
-    }
 
     public PasswordManager(String password){
-        this(); // fires a empty constructor (password == 123)
         if (password != null && password.length() > 0)
         {
             this.password = password;

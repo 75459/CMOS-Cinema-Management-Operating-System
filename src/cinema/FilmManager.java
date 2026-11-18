@@ -2,7 +2,7 @@ package cinema;
 
 import java.util.ArrayList;
 
-public class FilmManager {
+public class FilmManager implements Displayable {
     private ArrayList<Film> filmList = new ArrayList<>();
 
     public FilmManager() {}
@@ -51,6 +51,16 @@ public class FilmManager {
 
     // -------------------------------------------------------------------------
 
+    public String getAllInfo() {
+        if (filmList.size() == 0) {
+            return "Brak filmów w bazie.";
+        }
+        String result = "";
+        for (Film item : filmList) {
+            result = result + item.toString() + "\n";
+        }
+        return result;
+    }
 
     public boolean createFilm(String title) {
         Film newFilm = new Film(getLastId() + 1, title);
@@ -59,16 +69,6 @@ public class FilmManager {
         }
         filmList.add(newFilm);
         return true;
-    }
-
-    public String getTitle(int id){
-        if (checkId(id)){
-            Film filmObj = getFilmObjById(id);
-            if (filmObj != null){
-                return filmObj.getTitle();
-            }
-        }
-        return "Coś poszło nie tak!";
     }
 
     public void deleteFilm(int id){

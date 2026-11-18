@@ -8,9 +8,6 @@ public class Film extends CinemaEntity{
         this.title = title;
     }
 
-    String getTitle(){
-        return title;
-    }
 
     @Override
     String getInfo() {
