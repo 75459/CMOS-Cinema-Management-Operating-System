@@ -48,14 +48,14 @@ public class ScreeningManager {
     private int getAvabileSeats(int roomId, RoomManager roomManagerObj, int screeningId){
         int roomSeats = roomManagerObj.getRoomCountById(roomId);
         if (roomSeats >= 0){
-            return roomSeats - getBoughtSeats(screeningId);
+            return (roomSeats - getBoughtSeats(screeningId) ) - getReservedSeats(screeningId);
         }
         return -1;
     }
 
     // -------------------------------------------------------------------------
 
-    public void createScreening(String date, int  filmId, int roomId, int boughtSeats, int reservedSeats){
+    public void createScreening(String date, int  filmId, int roomId){
         Screening screening = new Screening(getLastId()+1, date, filmId, roomId);
         screeningsList.add(screening);
     }
@@ -98,8 +98,10 @@ public class ScreeningManager {
         }
     }
     public void payReservation(int screeningId,int roomId, RoomManager roomManagerObj){
-        cancelReservation(screeningId);
-        sellSeat(roomId, roomManagerObj, screeningId);
+        if (getReservedSeats(screeningId) > 0){
+            cancelReservation(screeningId);
+            sellSeat(roomId, roomManagerObj, screeningId);
+        }
     }
 
     // ---------------- GET ----------------

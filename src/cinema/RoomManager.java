@@ -30,11 +30,11 @@ public class RoomManager {
         int reps = 0;
         for (Room item : roomList)
         {
-            reps++;
             if (item.getId() == id)
             {
                 return reps;
             }
+            reps++;
         }
         return -1;
     }
@@ -119,13 +119,8 @@ public class RoomManager {
     }
 
     public void deleteSala(int id){
-        if (checkId(id))
-        {
-            int index = getSalaIndexById(id);
-            if (index >= 0)
-            {
-                roomList.remove(index);
-            }
+        if (checkId(id)) {
+            roomList.remove(getSalaById(id));
         }
     }
 
