@@ -2,11 +2,11 @@ package cinema;
 
 import java.util.ArrayList;
 
-public class roomManager {
+public class RoomManager {
     private ArrayList<Room> roomList = new ArrayList<>();
 
-    public roomManager(){}
-    public roomManager(ArrayList<Room> list){
+    public RoomManager(){}
+    public RoomManager(ArrayList<Room> list){
         if (list != null)
         {
             roomList = list;
@@ -62,6 +62,13 @@ public class roomManager {
 
     // -------------------------------------------------------------------------
 
+
+    public int getRoomCountById(int id){
+        if (checkId(id)){
+            return getSalaById(id).getSeatCount();
+        }
+        return -1;
+    }
     public void createSala(String number, int seatCount){
         Room room = new Room(number, seatCount, getLastId() + 1);
         roomList.add(room);

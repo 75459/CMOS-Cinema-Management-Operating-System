@@ -8,13 +8,13 @@ public class Screening {
     private int boughtSeats;
     private int reservedSeats;
 
-    Screening(int screeningId, String date, int  filmId, int roomId, int boughtSeats, int reservedSeats){
+    Screening(int screeningId, String date, int  filmId, int roomId){
         this.screeningId = screeningId;
         this.date = date;
         this.filmId = filmId;
         this.roomId = roomId;
-        this.boughtSeats = boughtSeats;
-        this.reservedSeats = reservedSeats;
+        boughtSeats = 0;
+        reservedSeats = 0;
     }
 
     int getId(){

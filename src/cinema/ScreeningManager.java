@@ -45,11 +45,61 @@ public class ScreeningManager {
         }
     }
 
+    private int getAvabileSeats(int roomId, RoomManager roomManagerObj, int screeningId){
+        int roomSeats = roomManagerObj.getRoomCountById(roomId);
+        if (roomSeats >= 0){
+            return roomSeats - getBoughtSeats(screeningId);
+        }
+        return -1;
+    }
+
     // -------------------------------------------------------------------------
 
     public void createScreening(String date, int  filmId, int roomId, int boughtSeats, int reservedSeats){
-        Screening screening = new Screening(getLastId()+1, date, filmId, roomId, boughtSeats, reservedSeats);
+        Screening screening = new Screening(getLastId()+1, date, filmId, roomId);
         screeningsList.add(screening);
+    }
+
+    public void deleteScreening(int id){
+        if (checkId(id)){
+            screeningsList.remove(getScreeningObjById(id));
+        }
+    }
+
+    public boolean sellSeat(int roomId, RoomManager roomManagerObj, int screeningId){
+        int availableSeats = getAvabileSeats(roomId, roomManagerObj, screeningId) - getReservedSeats(screeningId);
+        if (availableSeats >= 0){
+            if (availableSeats == 0){
+                return false;
+            }
+            else if (availableSeats > 0){
+                setBoughtSeats(screeningId, getBoughtSeats(screeningId) + 1);
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean reserveSeat(int roomId, RoomManager roomManagerObj, int screeningId){
+        int availableSeats2 = getAvabileSeats(roomId, roomManagerObj, screeningId);
+        if (availableSeats2 >= 0){
+            if (availableSeats2 == 0){
+                return false;
+            }
+            else if (availableSeats2 > 0){
+                setReservedSeats(screeningId, getReservedSeats(screeningId) + 1);
+                return true;
+            }
+        }
+        return false;
+    }
+    public void cancelReservation(int screeningId){
+        if (getReservedSeats(screeningId) > 0){
+            setReservedSeats(screeningId, getReservedSeats(screeningId)-1);
+        }
+    }
+    public void payReservation(int screeningId,int roomId, RoomManager roomManagerObj){
+        cancelReservation(screeningId);
+        sellSeat(roomId, roomManagerObj, screeningId);
     }
 
     // ---------------- GET ----------------
@@ -126,12 +176,6 @@ public class ScreeningManager {
         if (checkId(id))
         {
             getScreeningObjById(id).setReservedSeats(newReservedSeats);
-        }
-    }
-
-    public void deleteScreening(int id){
-        if (checkId(id)){
-            screeningsList.remove(getScreeningObjById(id));
         }
     }
 }
